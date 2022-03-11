@@ -1,0 +1,18 @@
+import requests
+import json
+import datetime
+
+cotacoes = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL,BTC-BRL")
+cotacoes = cotacoes.json()
+
+cotacao_dolar = cotacoes['USDBRL']['bid']
+cotacao_euro = cotacoes['EURBRL']['bid']
+cotacao_bitcoin = cotacoes['BTCBRL']['bid']
+
+hoje = datetime.datetime.now()
+hoje_formatado = hoje.strftime('%d/%m/%Y')
+
+print(f'======Cotação de {hoje_formatado}=======')
+print(f'A cotação do Dólar é: R$ {cotacao_dolar}')
+print(f'A cotação do Euro é: R$ {cotacao_euro}')
+print(f'A cotação do BitCoin é: R$ {cotacao_bitcoin}')
